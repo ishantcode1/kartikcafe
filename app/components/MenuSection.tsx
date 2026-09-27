@@ -21,9 +21,14 @@ export default function MenuSection() {
   const [lightbox, setLightbox] = useState(false);
   useEffect(() => {
     if (!lightbox) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     const close = (event: KeyboardEvent) => event.key === 'Escape' && setLightbox(false);
     window.addEventListener('keydown', close);
-    return () => window.removeEventListener('keydown', close);
+    return () => {
+      window.removeEventListener('keydown', close);
+      document.body.style.overflow = previousOverflow;
+    };
   }, [lightbox]);
   const visibleMenu = filter === 'All' ? menu : menu.filter((group) => group.category === filter);
 
