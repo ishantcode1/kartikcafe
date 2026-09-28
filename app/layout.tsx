@@ -1,5 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import ScrollReveal from './components/ScrollReveal';
 
 export const metadata: Metadata = {
   title: 'Scoop N Brew | A Little Scoop of Happiness',
@@ -14,7 +15,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen scrollbar-hide">{children}</body>
+      <body className="min-h-screen scrollbar-hide">
+        <ScrollReveal />
+        {children}
+      </body>
     </html>
   );
 }
